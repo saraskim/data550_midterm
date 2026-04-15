@@ -1,0 +1,43 @@
+---
+title: Predictors of NBA player rankings
+author: Dan Flanagan, Lina Dimitrov, Sara Kim
+output: html_document
+---
+
+```{r, here-i-am, include = FALSE}
+here::i_am("report.Rmd")
+```
+
+```{r, set-up, include = FALSE}
+data_clean <- readRDS(here::here("data/nba_data_clean.rds"))
+table1 <- readRDS(here::here("output/table1.rds"))
+table2 <- readRDS(here::here("output/table2.rds"))
+figure1 <- readRDS(here::here("output/figure1.rds"))
+pacman::p_load(dplyr, tidyr, ggplot2, zoo, gt, gtsummary)
+```
+
+# Project overview
+
+This project investigates which player characteristics are predictive of NBA player rankings among players who played at least 1000 minutes. In this dataset, there were `r nrow(data_clean)` players.
+
+# Descriptive analysis
+
+Based on the descriptive analyses, number of points scored and player age seem to make the biggest difference between the top 10 and bottom 10 ranked players.
+
+```{r descriptive, fig.align="center", fig.width=6, fig.height=8, echo = FALSE}
+table1
+
+figure1
+```
+
+# Regression analysis
+
+We ran a linear regression model regressing player characteristics on player rank. We found that as the player rank decreased, the number of points and number of assists also decreased. 
+
+```{r regression, fig.align="center", fig.width=10, fig.height=16, echo = FALSE}
+table2
+```
+
+# Conclusion
+
+Although the descriptive analysis found that player age and points scored were the most divergent between top 10 and bottom 10 ranked players in the NBA, our regression model found that points scored and number of assists were the most important predictors of ranking. 
