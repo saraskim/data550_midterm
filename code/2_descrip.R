@@ -14,7 +14,7 @@ data_clean <- readRDS(here::here("data/nba_data_clean.rds"))
 table1 <- data_clean %>%
   select(c(Age, Pos, eFG.,
           ORB, DRB, AST, STL, BLK, TOV,
-          PF, PTS, rank_topbottom10)) %>%
+          PF, PTS, FT., rank_topbottom10)) %>%
   filter(!is.na(rank_topbottom10))
 
 
@@ -32,7 +32,7 @@ table1_final <- table1 %>%
                 TOV ~ "Turnovers",
                 PF ~ "Fouls",
                 PTS ~ "Points",
-                FT% ~ "Free Throw Percentage"),
+                FT. ~ "Free Throw Percentage"),
               statistic = list(all_continuous()~"{mean} ({sd})",
                                all_categorical() ~ "{n} ({p}%)"),
               digits = all_continuous() ~ 2
@@ -47,7 +47,7 @@ saveRDS(table1_final, "output/table1.rds")
 # -- Make figure 
 diff_data <- table1 %>%
   group_by(rank_topbottom10) %>%
-  summarise(across(c(Age, eFG., ORB, DRB, AST, STL, BLK, TOV, PF, PTS),
+  summarise(across(c(Age, eFG., ORB, DRB, AST, STL, BLK, TOV, PF, PTS, FT.),
                    mean, na.rm = TRUE)) %>%
   pivot_longer(-rank_topbottom10) %>%
   pivot_wider(names_from = rank_topbottom10, values_from = value) %>%
