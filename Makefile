@@ -1,7 +1,7 @@
 report.html: report.Rmd code/4_render.R setup descrip regression data/nba_data_clean.rds
 	Rscript code/4_render.R
 
-setup: code/1_setup.R data/nba_27feb2026.csv
+setup: code/1_setup.R data/raw_data/nba_27feb2026.csv
 	Rscript code/1_setup.R
 
 

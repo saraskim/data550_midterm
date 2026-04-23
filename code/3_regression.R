@@ -21,4 +21,4 @@ model_table <- model %>%
   bold_labels()
 
 # -- Save table 
-saveRDS(model_table, "output/table2.rds")
+saveRDS(model_table, "output/table3.rds")

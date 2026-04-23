@@ -12,32 +12,56 @@ here::i_am("report.Rmd")
 data_clean <- readRDS(here::here("data/nba_data_clean.rds"))
 table1 <- readRDS(here::here("output/table1.rds"))
 table2 <- readRDS(here::here("output/table2.rds"))
+table3 <- readRDS(here::here("output/table3.rds"))
 figure1 <- readRDS(here::here("output/figure1.rds"))
 pacman::p_load(dplyr, tidyr, ggplot2, zoo, gt, gtsummary)
 ```
 
-# Project overview
+> <b> To Do/Next Steps (REMOVE BEFORE FINAL SUBMISSION) </b>
 
-This project investigates which player characteristics are predictive of NBA player rankings among players who played at least 1000 minutes. In this dataset, there were `r nrow(data_clean)` players.
+- Kept rank_topbottom10 variable in data cleaning script for now, but if we focus analysis on All-Stars vs. not -- then drop rank_topbottom10
+- Decide how to handle n=16 players designated as "2TM" -- i.e. who were traded and played for 2 teams (all non-All Stars)
+- Decide how to handle n=8 players who did not attempt any 3PT shots --> 3PT% = NA (missing)
+- Decide whether to present all scoring vs. selected scoring variables in Table 2 (just total points, attempts + make %? drop non-scoring vars)
+- Update regression analysis & conclusion sections to reflect All-Star vs. Non-All-Star analysis
+- Test report compiles if dataset is changed. Consider the following scenarios:
 
-# Descriptive analysis
+    - Subset raw data in half or delete a random 10% of players to mimic removing/adding data
+    - Test different scenarios for Awards column text being updated with additional awards to make sure extracting "AS" correctly
 
-Based on the descriptive analyses, number of points scored and player age seem to make the biggest difference between the top 10 and bottom 10 ranked players.
 
-```{r descriptive, fig.align="center", fig.width=6, fig.height=8, echo = FALSE}
+## Project overview
+
+This project investigates which player characteristics are predictive of being selected as an NBA All-Star among players who started at least 50% of their games played. In this dataset, there were `r nrow(data_clean)` players.
+
+## Descriptive analysis
+
+Based on the descriptive analyses, All-Stars were slightly older, started nearly all of their games, and played more minutes compared to Non-All-Stars. 
+
+
+```{r table1, fig.align="center", fig.width=6, fig.height=8, echo = FALSE}
 table1
+
+```
+
+## Game performance (per 36 mins)
+
+Comparison of game performance for All-Stars vs. Non-All-Stars, reveals that All-Stars score significantly more points compared to Non-All-Stars, per 36 minutes of playing time. Interestingly, All-Stars and Non-All-Stars have similar make percentages across all scoring categories: All field goals, 3-point shots, 2-point shots, and free throws. However, All-Stars take significantly more attempts in all scoring categories compared to Non-All-Stars, resulting in more points scored per 36 minutes.
+
+```{r table2, fig.align="center", fig.width=6, fig.height=8, echo = FALSE}
+table2
 
 figure1
 ```
 
-# Regression analysis
+## Regression analysis
 
 We ran a linear regression model regressing player characteristics on player rank. We found that as the player rank decreased, the number of points and number of assists also decreased. 
 
 ```{r regression, fig.align="center", fig.width=10, fig.height=16, echo = FALSE}
-table2
+table3
 ```
 
-# Conclusion
+## Conclusion
 
 Although the descriptive analysis found that player age and points scored were the most divergent between top 10 and bottom 10 ranked players in the NBA, our regression model found that points scored and number of assists were the most important predictors of ranking. 

@@ -2,3 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
+
+##Project specific folders
+/output
+
+##MacOSx 
+.DS_Store
+
