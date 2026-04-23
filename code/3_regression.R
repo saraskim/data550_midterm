@@ -9,10 +9,11 @@ data_clean <- readRDS(here::here("data/nba_data_clean.rds"))
 
 
 # -- Run regression model
-model <- glm(Rk ~ Age + PTS + AST + TOV + BLK + eFG. + STL + DRB + PF + ORB, 
+model <- glm(all_star ~ PTS + FG. + X3P. + X2P. + FT. + ORB + AST + TOV + DRB + BLK + STL + PF, 
              data = data_clean,
-             family = gaussian(link = "identity"))
+             family = binomial(link = "logit"))
 summary(model)
+
 
 # -- Make model results into a table
 model_table <- model %>%
