@@ -18,7 +18,7 @@ summary(model)
 # -- Make model results into a table
 model_table <- model %>%
   tbl_regression() %>%
-  modify_caption("Linear regression predicting player rank") %>%
+  modify_caption("Linear regression predicting player all star status") %>%
   bold_labels()
 
 # -- Save table 
