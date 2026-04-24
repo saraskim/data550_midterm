@@ -14,6 +14,7 @@ table1 <- readRDS(here::here("output/table1.rds"))
 table2 <- readRDS(here::here("output/table2.rds"))
 table3 <- readRDS(here::here("output/table3.rds"))
 figure1 <- readRDS(here::here("output/figure1.rds"))
+figure2 <- readRDS(here::here("output/figure2.rds"))
 pacman::p_load(dplyr, tidyr, ggplot2, zoo, gt, gtsummary)
 ```
 
@@ -60,6 +61,8 @@ We ran a linear regression model regressing player characteristics on player ran
 
 ```{r regression, fig.align="center", fig.width=10, fig.height=16, echo = FALSE}
 table3
+
+figure2
 ```
 
 ## Conclusion

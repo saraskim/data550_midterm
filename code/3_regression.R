@@ -24,9 +24,9 @@ model_table <- model %>%
 # -- Make model results into a forest plot
 
 tab <- broom::tidy(model, conf.int = TRUE, exponentiate = TRUE) %>%
-  filter(term != "(Intercept)") %>%   # remove intercept
+  filter(term != "(Intercept)")   # remove intercept
 
-  ggplot(tab, aes(x = estimate, y = reorder(term, estimate))) +
+ figure2 <- ggplot(tab, aes(x = estimate, y = reorder(term, estimate))) +
   geom_point(size = 3, color = "#1b4f72") +
   geom_errorbarh(aes(xmin = conf.low, xmax = conf.high),
                  height = 0.2, color = "#1b4f72") +
@@ -40,3 +40,6 @@ tab <- broom::tidy(model, conf.int = TRUE, exponentiate = TRUE) %>%
 
 # -- Save table 
 saveRDS(model_table, "output/table3.rds")
+
+# -- Save plot
+saveRDS(figure2, "output/figure2.rds")
