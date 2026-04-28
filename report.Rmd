@@ -1,5 +1,5 @@
 ---
-title: Predictors of NBA player rankings
+title: Predictors of NBA All-Start Status
 author: Dan Flanagan, Lina Dimitrov, Sara Kim
 output: html_document
 ---
