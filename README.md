@@ -1,6 +1,6 @@
-# Predictors of NBA player rankings
+# Analysis of NBA All-Stars
 
-> This report analysis predictors of NBA player rankings among players with at least 1000 minutes played. 
+> This report identified predictors of NBA player All-Star status among players who started at least 50% of their team's games. 
 
 ------------------------------------------------------------------------
 
